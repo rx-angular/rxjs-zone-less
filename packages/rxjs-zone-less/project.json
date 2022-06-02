@@ -1,0 +1,60 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/rxjs-zone-less/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/rxjs-zone-less",
+        "main": "packages/rxjs-zone-less/src/index.ts",
+        "tsConfig": "packages/rxjs-zone-less/tsconfig.lib.json",
+        "assets": ["packages/rxjs-zone-less/*.md"]
+      }
+    },
+    "build-lib": {
+      "executor": "@nrwl/workspace:run-commands",
+      "outputs": ["dist/packages/rxjs-zone-less"],
+      "options": {
+        "commands": [
+          "rm -rf dist/packages/",
+          "tsc --project packages/rxjs-zone-less/tsconfig.lib.json --module es2015 --target es2015 --outDir dist/packages/rxjs-zone-less/es2015",
+          "tsc --project packages/rxjs-zone-less/tsconfig.lib.json --module es2015 --target es5 --outDir dist/esm --outDir dist/packages/rxjs-zone-less/esm",
+          "rollup dist/packages/rxjs-zone-less/esm/index.js --format umd --name rxjs-zone-less --file dist/packages/rxjs-zone-less/umd/rxjs-zone-less.js",
+          "uglifyjs dist/packages/rxjs-zone-less/umd/rxjs-zone-less.js -c -m -o dist/packages/rxjs-zone-less/umd/rxjs-zone-less.min.js",
+          "gzip dist/packages/rxjs-zone-less/umd/rxjs-zone-less.min.js -c > dist/packages/rxjs-zone-less/umd/rxjs-zone-less.min.js.gz"
+        ],
+        "parallel": false
+      }
+    },
+    "publish": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "node tools/scripts/publish.mjs rxjs-zone-less {args.ver} {args.tag}"
+      },
+      "dependsOn": [
+        {
+          "projects": "self",
+          "target": "build"
+        }
+      ]
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/rxjs-zone-less/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/rxjs-zone-less"],
+      "options": {
+        "jestConfig": "packages/rxjs-zone-less/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

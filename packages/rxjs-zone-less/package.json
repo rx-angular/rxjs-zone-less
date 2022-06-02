@@ -1,0 +1,49 @@
+{
+  "name": "rxjs-zone-less",
+  "version": "1.0.0",
+  "description": "A set of wrappers for RxJS to avoid unnecessary change detection and zone interference in Angular.",
+  "main": "index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=14",
+    "npm": ">=6"
+  },
+  "author": "Julian Jandl <julian.jandl@push-based.io>",
+  "homepage": "https://github.com/rx-angular/rxjs-zone-less",
+  "keywords": [
+    "angular",
+    "reactive",
+    "rxjs",
+    "zone-js",
+    "zonejs"
+  ],
+  "contributors": [
+    {
+      "name": "Michael Hladky",
+      "email": "michael.hladky@push-based.io"
+    },
+    {
+      "name": "Julian Jandl",
+      "email": "julian@push-based.io"
+    },
+    {
+      "name": "Kirill Karnaukhov",
+      "email": "karnaukhov.kh@gmail.com"
+    },
+    {
+      "name": "Edouard Bozon",
+      "email": "bozonedouard@gmail.com"
+    }
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rx-angular/rxjs-zone-less.git"
+  },
+  "peerDependencies": {
+    "rxjs": "> 6.4",
+    "tslib": "> 2"
+  }
+}
