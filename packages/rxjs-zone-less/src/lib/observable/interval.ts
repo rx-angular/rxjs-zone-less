@@ -47,7 +47,6 @@ import { isNumeric } from './utils';
  * @return {Observable} An Observable that emits a sequential number each time
  * interval.
  * @static true
- * @deprecated will be removed with 1.0.0
  * @name interval
  * @owner Observable
  */
