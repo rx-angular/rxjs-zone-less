@@ -2,7 +2,11 @@
   "name": "rxjs-zone-less",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "affected:lint": "nx affected:lint",
+    "affected:test": "nx affected:test",
+    "affected:build": "nx affected:build"
+  },
   "private": true,
   "dependencies": {
     "rxjs": "^7.5.4",

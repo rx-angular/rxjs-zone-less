@@ -3,7 +3,17 @@
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "npmScope": "rxjs-zone-less",
   "affected": {
-    "defaultBase": "main"
+    "defaultBase": "origin/main"
+  },
+  "implicitDependencies": {
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    "tsconfig.base.json": "*",
+    "tsconfig.*.json": "*",
+    "nx.json": "*",
+    ".eslintrc.json": "*"
   },
   "cli": {
     "defaultCollection": "@nrwl/workspace"
