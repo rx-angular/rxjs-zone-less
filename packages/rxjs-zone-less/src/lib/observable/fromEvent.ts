@@ -7,7 +7,6 @@ function isFunction(fn: any): fn is Function {
   return typeof fn === 'function';
 }
 const isArray = Array.isArray;
-const toString: Function = (() => Object.prototype.toString)();
 
 export interface NodeStyleEventEmitter {
   addListener: (eventName: string | symbol, handler: NodeEventHandler) => this;
@@ -66,7 +65,6 @@ export interface AddEventListenerOptions extends EventListenerOptions {
   passive?: boolean;
 }
 
-/** @deprecated will be removed with 1.0.0 */
 export function fromEvent<T>(
   target: FromEventTarget<T>,
   eventName: string
@@ -77,7 +75,6 @@ export function fromEvent<T>(
   eventName: string,
   resultSelector: (...args: any[]) => T
 ): Observable<T>;
-/** @deprecated will be removed with 1.0.0 */
 export function fromEvent<T>(
   target: FromEventTarget<T>,
   eventName: string,
@@ -90,7 +87,6 @@ export function fromEvent<T>(
   options: EventListenerOptions,
   resultSelector: (...args: any[]) => T
 ): Observable<T>;
-/** @deprecated will be removed with 1.0.0 */
 export function fromEvent<T>(
   target: FromEventTarget<T>,
   eventName: string,
