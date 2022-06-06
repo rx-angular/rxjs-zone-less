@@ -2,7 +2,7 @@
   "name": "rxjs-zone-less",
   "version": "1.0.0",
   "description": "A set of wrappers for RxJS to avoid unnecessary change detection and zone interference in Angular.",
-  "main": "index.js",
+  "main": "umd/rxjs-zone-less.js",
   "publishConfig": {
     "access": "public"
   },
@@ -45,5 +45,11 @@
   "peerDependencies": {
     "rxjs": "> 6.4",
     "tslib": "> 2"
-  }
+  },
+  "module": "es2015/index.js",
+  "es2015": "es2015/index.js",
+  "esm2015": "esm/index.js",
+  "fesm2015": "es2015/index.js",
+  "typings": "es2015/index.d.ts",
+  "sideEffects": false
 }

@@ -4,26 +4,17 @@
   "projectType": "library",
   "targets": {
     "build": {
-      "executor": "@nrwl/js:tsc",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "dist/packages/rxjs-zone-less",
-        "main": "packages/rxjs-zone-less/src/index.ts",
-        "tsConfig": "packages/rxjs-zone-less/tsconfig.lib.json",
-        "assets": ["packages/rxjs-zone-less/*.md"]
-      }
-    },
-    "build-lib": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "outputs": ["dist/packages/rxjs-zone-less"],
       "options": {
         "commands": [
-          "rm -rf dist/packages/",
+          "rimraf dist/packages/",
           "tsc --project packages/rxjs-zone-less/tsconfig.lib.json --module es2015 --target es2015 --outDir dist/packages/rxjs-zone-less/es2015",
           "tsc --project packages/rxjs-zone-less/tsconfig.lib.json --module es2015 --target es5 --outDir dist/esm --outDir dist/packages/rxjs-zone-less/esm",
           "rollup dist/packages/rxjs-zone-less/esm/index.js --format umd --name rxjs-zone-less --file dist/packages/rxjs-zone-less/umd/rxjs-zone-less.js",
           "uglifyjs dist/packages/rxjs-zone-less/umd/rxjs-zone-less.js -c -m -o dist/packages/rxjs-zone-less/umd/rxjs-zone-less.min.js",
-          "gzip dist/packages/rxjs-zone-less/umd/rxjs-zone-less.min.js -c > dist/packages/rxjs-zone-less/umd/rxjs-zone-less.min.js.gz"
+          "gzip dist/packages/rxjs-zone-less/umd/rxjs-zone-less.min.js -c > dist/packages/rxjs-zone-less/umd/rxjs-zone-less.min.js.gz",
+          "cpy packages/rxjs-zone-less/package.json dist/packages/rxjs-zone-less --flat"
         ],
         "parallel": false
       }
