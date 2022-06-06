@@ -29,9 +29,6 @@
         "plugin:@nrwl/nx/typescript",
         "plugin:@typescript-eslint/recommended"
       ],
-      "parserOptions": {
-        "project": "./tsconfig.*?.json"
-      },
       "rules": {
         "@typescript-eslint/ban-ts-comment": "warn",
         "@typescript-eslint/no-inferrable-types": "warn",

@@ -38,7 +38,7 @@ jobs:
 #      - run: npx nx-cloud start-ci-run
 
       - name: Run Affected lint
-        run: npm run affected:lint -- --parallel=4
+        run: npm run affected:lint -- --quiet --parallel=4
 
       - name: Run Affected test
         run: npm run affected:test -- --parallel=4
