@@ -1,0 +1,50 @@
+name: build & test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+env:
+#  NX_CLOUD_DISTRIBUTED_EXECUTION: true
+#  NX_DISTRIBUTED_TASK_EXECUTION: true
+  NX_VERBOSE_LOGGING: false
+
+jobs:
+#  agents:
+#    runs-on: ubuntu-latest
+#
+#    name: Agent 1
+#    timeout-minutes: 20
+#
+#    strategy:
+#      matrix:
+#        agent: [1, 2, 3]
+#
+#    steps:
+#      - uses: actions/checkout@v2
+#      - uses: ./.github/actions/setup
+#
+#      - name: Start Nx Agent ${{ matrix.agent }}
+#        run: yarn nx-cloud start-agent
+
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/actions/setup
+
+#      - run: npx nx-cloud start-ci-run
+
+      - name: Run Affected lint
+        run: npm run affected:lint -- --parallel=4
+
+      - name: Run Affected test
+        run: npm run affected:test -- --parallel=4
+
+      # don't run build in parallel, can cause dead locks
+      - name: Run Affected build
+        run: npm run affected:build
+
+#      - run: npx nx-cloud stop-all-agents
