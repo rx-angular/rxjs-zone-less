@@ -22,14 +22,13 @@
     "publish": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
-        "command": "node tools/scripts/publish.mjs rxjs-zone-less {args.ver} {args.tag}"
-      },
-      "dependsOn": [
-        {
-          "projects": "self",
-          "target": "build"
-        }
-      ]
+        "commands": [
+          "nx run rxjs-zone-less:version --releaseAs=major --push",
+          "nx run rxjs-zone-less:build",
+          "npm publish dist/packages/rxjs-zone-less --access public"
+        ],
+        "parallel": false
+      }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
