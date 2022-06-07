@@ -45,6 +45,13 @@
         "jestConfig": "packages/rxjs-zone-less/jest.config.ts",
         "passWithNoTests": true
       }
+    },
+    "version": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "preset": "conventional",
+        "commitMessageFormat": "release(${projectName}): ${version}"
+      }
     }
   },
   "tags": []
