@@ -44,7 +44,7 @@
   },
   "peerDependencies": {
     "rxjs": "> 6.4",
-    "tslib": "> 2"
+    "tslib": "^2.0.0"
   },
   "module": "es2015/index.js",
   "es2015": "es2015/index.js",
