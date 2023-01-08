@@ -1,4 +1,4 @@
-# zone-less-rxjs
+# rxjs-zone-less
 
 [![npm](https://img.shields.io/npm/v/rxjs-zone-less.svg)](https://www.npmjs.com/package/rxjs-zone-less)
 ![rxjs-zone-less CI](https://github.com/rx-angular/rxjs-zone-less/workflows/rxjs-zone-less%20CI/badge.svg?branch=main)
@@ -35,9 +35,9 @@ Besides a well documented and typed API it provides way to use patched API's in 
 ## Install
 
 ```bash
-npm install --save zone-less-rxjs
+npm install --save rxjs-zone-less
 # or
-yarn add zone-less-rxjs
+yarn add rxjs-zone-less
 ```
 
 ## Documentation
