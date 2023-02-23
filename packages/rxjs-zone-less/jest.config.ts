@@ -7,10 +7,10 @@ export default {
       tsconfig: '<rootDir>/tsconfig.spec.json',
     },
   },
+  setupFilesAfterEnv: ['<rootDir>/spec/test-setup.ts'],
   transform: {
-    '^.+\\.[tj]s$': 'ts-jest',
+    '^.+.(ts|mjs|js|html)$': 'jest-preset-angular',
   },
-  moduleFileExtensions: ['ts', 'js', 'html'],
   transformIgnorePatterns: ['node_modules/(?!.*.mjs$)'],
   coverageDirectory: '../../coverage/packages/rxjs-zone-less',
 };

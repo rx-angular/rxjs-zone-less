@@ -1,5 +1,6 @@
 import { Subscription, merge } from 'rxjs';
 import { delay } from 'rxjs/operators';
+import { intervalProvider } from '../../src/lib/internals/intervalProvider';
 import { queueScheduler } from '../../src/lib/scheduler/queue/queue';
 import { RxTestScheduler } from '../../src/lib/testing/test-scheduler';
 import { jestMatcher } from '../utils';
@@ -12,10 +13,9 @@ describe('Scheduler.queue', () => {
 
   beforeEach(() => {
     testScheduler = new RxTestScheduler(jestMatcher);
-  });
-
-  afterEach(() => {
+    jest.clearAllTimers();
     jest.useRealTimers();
+    jest.clearAllMocks();
   });
 
   it('should act like the async scheduler if delay > 0', () => {
@@ -33,6 +33,10 @@ describe('Scheduler.queue', () => {
 
   it('should switch from synchronous to asynchronous at will', () => {
     jest.useFakeTimers();
+    intervalProvider.delegate = {
+      setInterval: setInterval,
+      clearInterval: clearInterval,
+    };
 
     let asyncExec = false;
     const state: Array<number> = [];
@@ -58,6 +62,7 @@ describe('Scheduler.queue', () => {
 
     expect(asyncExec).toBe(true);
     expect(state).toEqual([0, 1, 2]);
+    intervalProvider.delegate = undefined;
   });
 
   it('should unsubscribe the rest of the scheduled actions if an action throws an error', () => {
@@ -89,3 +94,4 @@ describe('Scheduler.queue', () => {
     expect(errorValue.message).toEqual('oops');
   });
 });
+
