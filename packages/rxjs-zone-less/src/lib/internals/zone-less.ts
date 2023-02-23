@@ -1,12 +1,14 @@
-
 // copied from @angular/core
-declare let global: any
-declare let WorkerGlobalScope: any
+declare let global: any;
+declare let WorkerGlobalScope: any;
 
 const __globalThis = typeof globalThis !== 'undefined' && globalThis;
 const __window = typeof window !== 'undefined' && window;
-const __self = typeof self !== 'undefined' && typeof WorkerGlobalScope !== 'undefined' &&
-  self instanceof WorkerGlobalScope && self;
+const __self =
+  typeof self !== 'undefined' &&
+  typeof WorkerGlobalScope !== 'undefined' &&
+  self instanceof WorkerGlobalScope &&
+  self;
 const __global = typeof global !== 'undefined' && global;
 
 // Always use __globalThis if available, which is the spec-defined global variable across all
@@ -35,7 +37,7 @@ export function clearInterval(id: number): void {
  */
 export function getZoneUnPatchedApi<
   N extends keyof (Window & typeof globalThis)
-  >(name: N): (Window & typeof globalThis)[N];
+>(name: N): (Window & typeof globalThis)[N];
 
 export function getZoneUnPatchedApi<T extends object, N extends keyof T>(
   target: T,
@@ -53,6 +55,5 @@ export function getZoneUnPatchedApi<T extends object, N extends keyof T>(
     name = targetOrName as N;
     targetOrName = _global as T;
   }
-  return targetOrName['__zone_symbol__' + name] || targetOrName[name];
+  return targetOrName[`__zone_symbol__${String(name)}`] || targetOrName[name];
 }
-
